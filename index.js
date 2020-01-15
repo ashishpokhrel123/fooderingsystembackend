@@ -1,0 +1,34 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const userRouter = require('./routes/user');
+const foodRouter = require('./routes/food');
+const resturantRouter = require('./routes/resturant');
+const dotenv = require('dotenv').config();
+
+const url = 'mongodb://localhost:27017/foodorderingsystem'
+const PORT = 3002;
+const app = express();
+const auth = require('./auth');
+
+   
+  //Connecting with Mongodb serve
+  mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+  .then((db)=>{
+      console.log("Succesfully connected to mongodb server");
+  },(err)=>console.log(err));
+
+
+  app.use(express.json());
+  app.use(express.static(__dirname +"public"));
+  //Connecting to Router
+
+  app.use('/users',userRouter);
+  app.use(auth.verifyUser);
+  app.use('/foods',foodRouter);
+  app.use('/resturants',resturantRouter);
+
+  //Listening to Port
+
+  app.listen(PORT,()=>{
+    console.log(`App is running at localhost:${PORT}`);
+});
