@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const userRouter = require('./routes/user');
 const foodRouter = require('./routes/food');
+const uploadRouter = require('./routes/uploads');
 const resturantRouter = require('./routes/resturant');
 const dotenv = require('dotenv').config();
 
@@ -23,6 +24,7 @@ const auth = require('./auth');
   //Connecting to Router
 
   app.use('/users',userRouter);
+  app.use('/upload',uploadRouter);
   app.use(auth.verifyUser);
   app.use('/foods',foodRouter);
   app.use('/resturants',resturantRouter);
