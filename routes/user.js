@@ -20,7 +20,8 @@ router.post('/signup',(req,res,next)=>{
             phone:req.body.phone,
             email:req.body.email,
             username:req.body.username,
-            password:hash
+            password:hash,
+            profileimage:req.body.profileimage
 
 
         }).then((user)=>{
