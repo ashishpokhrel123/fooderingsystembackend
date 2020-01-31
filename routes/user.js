@@ -50,4 +50,19 @@ router.post('/login', (req, res, next) => {
         }).catch(next);
 });
 
+router.get('/me', auth.verifyUser, (req, res, next) => {
+    // res.json({ username: req.user.username, firstName: req.user.firstName, lastName: req.user.lastName });
+    res.json(req.user);
+});
+router.put('/me', auth.verifyUser, (req, res, next) => {
+    User.findByIdAndUpdate(req.user._id, { $set: req.body }, { new: true })
+        .then((user) => {
+            res.json({ username: user.username, name: user.name, email: user.email,profileimage:user.profileimage });
+        })
+});
+
+
+
+
+
 module.exports=router;
