@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
     },
     profileimage:{
         type: String
+    },
+    admin: {
+        type: Boolean,
+        default: false
     }
  
 

@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const jwt = require('jsonwebtoken');
 const userRouter = require('./routes/user');
 const foodRouter = require('./routes/food');
 const uploadRouter = require('./routes/uploads');
@@ -21,12 +22,15 @@ const cors = require('cors');
   },(err)=>console.log(err));
 
 
-  app.use(express.json());
+  
+  
+ 
+  app.use(express.static(__dirname + "/public"));
+  app.options('*', cors());
+  app.use(cors());
   app.use(morgan('tiny'));
-  app.options('*',cors());
-  app.use(express.urlencoded({extended: true }));
-  app.use(express.static(__dirname +"public"));
-  //Connecting to Router
+  app.use(express.json());
+
 
   app.use('/users',userRouter);
   app.use('/upload',uploadRouter);
