@@ -20,7 +20,8 @@ router.post('/signup', (req, res, next) => {
             email:req.body.email,
             username:req.body.username,
             password:hash,
-            profileimage:req.body.profileimage
+            profileimage:req.body.profileimage,
+            admin:false
         }).then((user) => {
             let token = jwt.sign({_id:user._id}, process.env.SECRET);
             res.json({ status: "Signup success!", token: token });
@@ -43,15 +44,15 @@ router.post('/login', (req, res, next) => {
                             err.status = 401;
                             return next(err);
                         }
-                        let token = jwt.sign({ _id: user._id }, process.env.SECRET);
-                        res.json({ status: 'Login success!', token: token });
+                        let token = jwt.sign({ _id: user._id,admin:user.admin }, process.env.SECRET);
+                        res.json({ status: 'Login success!', token: token, admin:user.admin });
                     }).catch(next);
             }
         }).catch(next);
 })
 
 router.get('/me', auth.verifyUser, (req, res, next) => {
-   res.json({ _id: req.user._id, name: req.user.name, address: req.user.address, email:req.user.email, username: req.user.username, profileimage: req.user.profileimage });
+   res.json({ _id: req.user._id, name: req.user.name, address: req.user.address, email:req.user.email, username: req.user.username, profileimage: req.user.profileimage,admin:req.user.admin });
    
 });
 
