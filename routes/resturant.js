@@ -5,6 +5,7 @@ const router = express.Router();
 router.route('/')
 .get((req,res,next)=>{
     Resturant.find({})
+    .populate('food')
     .then((resturant)=>{
         res.status=200;
         res.json(resturant);
@@ -12,7 +13,11 @@ router.route('/')
     .catch((err)=>(next));
 })
 .post((req,res,next)=>{
-    Resturant.create(req.body)
+    Resturant.create({
+        resturant_name:req.body.resturant_name,
+        resturant_location: req.body.resturant_location,
+        res_image:req.body.res_image
+    })
     .then((resturant)=>{
         res.status=201;
         res.json(resturant);
@@ -35,6 +40,7 @@ router.route('/')
 router.route('/:id')
 .get((req,res,next)=>{
    Resturant.findById(req.params.id)
+ 
    .then((resturant)=>{
        res.statusCode=200;
        res.json(resturant);

@@ -8,9 +8,13 @@ const resturantSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    res_image:{
+        type:String
+    },
+    
     fooditem:[{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Food'
+        ref:"Food"
     }]
 },{timestamps:true});
 
