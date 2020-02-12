@@ -34,9 +34,13 @@ const cors = require('cors');
 
   app.use('/users',userRouter);
   app.use('/upload',uploadRouter);
-  app.use(auth.verifyUser);
   app.use('/foods',foodRouter);
   app.use('/resturants',resturantRouter);
+
+  app.use(auth.verifyUser);
+ 
+  
+ 
 
   //Listening to Port
 

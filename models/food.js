@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const foodSchema = new mongoose.Schema({
     foodname:{
         type:String,
-        required:true
+     
     },
     foodimage:{
         type:String
     },
     price:{
         type:Number,
-        required:true
+     
     },
     resturant:[{
         type:mongoose.Schema.Types.ObjectId,
