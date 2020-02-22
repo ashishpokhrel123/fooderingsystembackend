@@ -4,7 +4,7 @@ const resturantSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    resturant_location:{
+    resturant_address:{
         type:String,
         required:true
     },

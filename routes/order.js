@@ -5,11 +5,11 @@ const router = express.Router();
 
 router.route('/')
 .get((req,res,next)=>{
-    Order.find({})
-    .then((order)=>{
-        res.statusCode = 200;
+    Order.find({ author: req.user._id })
+           
+    .then((order) => {
         res.json(order);
-    })
+    }).catch((err) => next(err));
 })
 .post((req,res,next)=>{
     Order.create(req.body)

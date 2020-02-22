@@ -8,17 +8,10 @@ const foodSchema = new mongoose.Schema({
         type:String
     },
     price:{
-        type:Number,
+        type:String,
      
     },
-    resturant:[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Resturant'
-    }],
-    order:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Order'
-    }
+   
 },{timestamps:true});
 
 module.exports=mongoose.model('Food',foodSchema);

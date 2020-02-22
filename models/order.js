@@ -11,12 +11,12 @@ const orderSchema =  new mongoose.Schema({
         required:true
     }],
     quanity:{
-        type:Number,
+        type:String,
         required:true
 
     },
     totalprice:{
-        type:Float32Array,
+        type:String,
         
     }
 },{timestamps:true});

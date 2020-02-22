@@ -14,7 +14,8 @@ router.route('/')
 .post((req,res,next)=>{
     Resturant.create({
         resturant_name:req.body.resturant_name,
-        resturant_location: req.body.resturant_location,
+        resturant_address: req.body.resturant_address,
+        food_item:req.body.food_item,
         res_image:req.body.res_image
     })
     .then((resturant)=>{
@@ -38,16 +39,16 @@ router.route('/')
 
 router.route('/:id')
 .get((req,res,next)=>{
-   Resturant.findById(req.params.id)
-   .populate('fooditem')
-   .then((resturant)=>{
-       res.statusCode=200;
-       res.json(resturant);
-
-
-   })
-   .catch((err)=>(next));
-})
+    Resturant.findById(req.params.id)
+    .populate('fooditem')
+    .then((resturant)=>{
+        res.statusCode=200;
+        res.json(resturant);
+ 
+ 
+    })
+    .catch((err)=>(next));
+ })
 .post((req,res,next)=>{
     res.statusCode=401;
     res.json("You cannot add resturant");

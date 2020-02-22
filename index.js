@@ -3,8 +3,11 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const jwt = require('jsonwebtoken');
 const userRouter = require('./routes/user');
+const adminRouter = require('./routes/admin');
 const foodRouter = require('./routes/food');
 const uploadRouter = require('./routes/uploads');
+const cartRouter = require('./routes/cart');
+const orderRouter = require('./routes/order');
 const resturantRouter = require('./routes/resturant');
 const dotenv = require('dotenv').config();
 
@@ -36,8 +39,14 @@ const cors = require('cors');
   app.use('/upload',uploadRouter);
   app.use('/foods',foodRouter);
   app.use('/resturants',resturantRouter);
-
+  app.use('/admin',adminRouter);
+ 
   app.use(auth.verifyUser);
+  app.use('/cart',cartRouter);
+  app.use('/order',orderRouter);
+
+
+
  
   
  
